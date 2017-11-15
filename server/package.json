@@ -1,0 +1,15 @@
+{
+  "name": "contact-book-server",
+  "version": "1.0.0",
+  "description": "API server for contact-book app.",
+  "main": "index.js",
+  "repository": "https://github.com/frenchbread/contact-book.git",
+  "author": "Damir Mustafin <damir.mustafin@protonmail.ch>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "mongoose": "^4.13.2",
+    "server": "^1.0.4"
+  },
+  "devDependencies": {}
+}

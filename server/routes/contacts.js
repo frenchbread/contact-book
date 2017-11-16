@@ -10,7 +10,7 @@ module.exports = [
   // Retrieve all contacts
   get('/contacts', ctx => {
     return contactsModel.get({})
-      .then(data => json({ ok: true, data }))
+      .then(data => json(data))
       .catch(() => status(500))
   }),
 
@@ -19,7 +19,7 @@ module.exports = [
     const data = ctx.data
 
     return contactsModel.add(data)
-      .then(data => json({ ok: true, data }))
+      .then(data => json(data))
       .catch(() => status(500))
   }),
 
@@ -29,7 +29,7 @@ module.exports = [
     const data = ctx.data
 
     return contactsModel.update(_id, data)
-      .then(data => json({ ok: true, data }))
+      .then(data => json(data))
       .catch(() => status(500))
   }),
 
@@ -38,7 +38,7 @@ module.exports = [
     const _id = ctx.params._id
 
     return contactsModel.remove(_id)
-      .then(data => json({ ok: true, data }))
+      .then(data => json(data))
       .catch(() => status(500))
   })
 

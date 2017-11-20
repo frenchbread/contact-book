@@ -1,5 +1,9 @@
 @import './colors.scss';
 
+body {
+  background-color: #f7f7f7;
+}
+
 .align-left {
   text-align: left;
 }
@@ -23,6 +27,18 @@
   height: 1px;
   margin: 0.5em 0;
   background-color: #ccc;
+}
+
+.gap {
+  width: 100%;
+  height: 0.5em;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: #777;
+  border-left: 0.25em solid #ddd;
+  margin: 10px 0;
 }
 
 // Forms

@@ -16,7 +16,7 @@ const mutations = {
   CLEAR_CONTACTS (state) {
     state.all = []
   },
-  EDIT_CONTACT (state, contact) {
+  UPDATE_CONTACT (state, contact) {
     const toRemove = state.all.map(x => x._id).indexOf(contact._id)
     state.all.splice(toRemove, 1)
     state.all.push(contact)
@@ -41,6 +41,9 @@ const actions = {
   },
   addContact ({ commit }, contact) {
     commit('ADD_CONTACT', contact)
+  },
+  updateContact ({ commit }, contact) {
+    commit('UPDATE_CONTACT', contact)
   },
   updateQuery ({ commit }, q) {
     commit('UPDATE_QUERY', q)

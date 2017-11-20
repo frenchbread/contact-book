@@ -58,6 +58,8 @@ export default {
   padding: 2em;
   overflow: auto;
 
+  background-color: #fff;
+
   .letter {
     position: sticky;
     top: 0;

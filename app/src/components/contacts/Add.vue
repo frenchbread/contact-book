@@ -11,7 +11,7 @@
           <input
             id="contact-first-name"
             type="text"
-            class="form-control mousetrap"
+            class="form-control"
             placeholder="First name"
             v-model="contact.first_name" />
         </div>
@@ -141,7 +141,8 @@
     <div class="gap-big"></div>
 
     <div>
-      <button type="submit" class="btn btn-primary btn-block">Create</button>
+      <button v-if="isEdit" type="submit" class="btn btn-primary btn-block">Update contact</button>
+      <button v-else type="submit" class="btn btn-primary btn-block">Create contact</button>
     </div>
   </form>
 </template>
@@ -153,8 +154,10 @@ import feather from 'feather-icons'
 import store from '@/store'
 import apiContacts from '@/lib/contacts/api'
 
+import ModalController from '@/components/modals/ModalController'
+
 export default {
-  props: ['close'],
+  props: ['close', 'data'],
   data () {
     return {
       feather,
@@ -166,7 +169,14 @@ export default {
         addresses: [''],
         phone_numbers: [''],
         emails: ['']
-      }
+      },
+      isEdit: false
+    }
+  },
+  created () {
+    if (this.data.isEdit) {
+      this.isEdit = true
+      this.contact = this.data.contact
     }
   },
   mounted () {
@@ -176,13 +186,27 @@ export default {
     submit () {
       const contact = this.contact
 
-      if (contact.first_name && contact.last_name) {
-        apiContacts.add(contact)
-          .then(newContact => {
-            store.dispatch('addContact', newContact)
-            this.close()
-          })
-          .catch(err => console.error(err))
+      if (contact.first_name) {
+        if (this.isEdit) {
+          apiContacts.update(contact._id, contact)
+            .then(updatedContact => {
+              store.dispatch('updateContact', updatedContact)
+
+              if (this.data.prevModal) {
+                const { title, component, data } = this.data.prevModal
+
+                ModalController.closeAndOpen(title, component, data)
+              }
+            })
+            .catch(err => console.error(err.message))
+        } else {
+          apiContacts.add(contact)
+            .then(newContact => {
+              store.dispatch('addContact', newContact)
+              this.close()
+            })
+            .catch(err => console.error(err.message))
+        }
       }
     },
     removeItem (type, index) {

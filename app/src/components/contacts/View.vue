@@ -1,11 +1,22 @@
 <template lang="html">
   <div class="view">
-    <div class="name">
-      <span>{{ data.contact.first_name }} {{ data.contact.last_name }}</span>
+    <div class="grid header">
+      <div class="cell -10of12 name">
+        <span>{{ data.contact.first_name }} {{ data.contact.last_name }}</span>
+      </div>
+      <div class="cell -2of12 controls align-right">
+        <span class="icon-btn" @click="openEditContactModal()" v-html="feather.toSvg('edit-2', opts2)"></span>
+        <span class="icon-btn" v-html="feather.toSvg('trash-2', opts2)"></span>
+      </div>
     </div>
 
-    <div class="details">
-      <div v-if="data.contact.phone_numbers.length > 0">
+    <div class="divider"></div>
+
+    <div class="details" v-if="detailsExist()">
+
+      <div class="gap"></div>
+
+      <div v-if="data.contact.phone_numbers[0] !== ''">
 
         <h3>Phone numbers</h3>
 
@@ -25,7 +36,7 @@
 
       </div>
 
-      <div v-if="data.contact.emails.length > 0">
+      <div v-if="data.contact.emails[0] !== ''">
 
         <h3>Emails</h3>
 
@@ -45,7 +56,7 @@
 
       </div>
 
-      <div v-if="data.contact.addresses.length > 0">
+      <div v-if="data.contact.addresses[0] !== ''">
 
         <h3>Addresses</h3>
 
@@ -64,19 +75,60 @@
         </div>
 
       </div>
+
+      <div class="gap"></div>
+
     </div>
+
+    <div v-else>
+      <blockquote class="blank">
+        No details provided.
+      </blockquote>
+    </div>
+
+    <div class="divider"></div>
+
+    <div>
+      Created at <b>{{ formatDateTime(data.contact.createdAt) }}</b>
+    </div>
+
+    <div>
+      Updated at <b>{{ formatDateTime(data.contact.updatedAt) }}</b>
+    </div>
+
   </div>
 </template>
 
 <script>
 import feather from 'feather-icons'
+import moment from 'moment'
+
+import ModalController from '@/components/modals/ModalController'
+import AddContact from '@/components/contacts/Add'
 
 export default {
   props: ['data'],
   data () {
     return {
       feather,
-      opts: { height: 15, width: 15, 'stroke-width': 2.5 }
+      opts: { height: 15, width: 15, 'stroke-width': 2.5 },
+      opts2: { height: 20, width: 20, 'stroke-width': 2.5 }
+    }
+  },
+  methods: {
+    detailsExist () {
+      return this.data.contact.phone_numbers[0] !== '' &&
+        this.data.contact.emails[0] !== '' &&
+        this.data.contact.addresses[0] !== ''
+    },
+    formatDateTime (date) {
+      return moment(date).format('HH:mm, DD MMM YYYY')
+    },
+    openEditContactModal () {
+      ModalController.closeAndOpen('Edit contact', AddContact, { isEdit: true, contact: this.data.contact })
+    },
+    openRemoveConfirmationModal () {
+
     }
   }
 }
@@ -84,13 +136,27 @@ export default {
 
 <style lang="scss" scoped>
 
-.view {
-  .name {
-    padding: 2em;
-    background-color: #f7f7f7;
+@import '../../styles/colors.scss';
 
-    span {
-      font-size: 3em;
+.view {
+  .header {
+    .name {
+      padding: 2em;
+
+      span {
+        font-size: 3em;
+      }
+    }
+
+    .controls {
+      padding: 2em;
+
+      .icon-btn {
+        &:hover {
+          color: $main;
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -105,6 +171,10 @@ export default {
         line-height: 0;
       }
     }
+  }
+
+  .blank {
+    margin: 3em;
   }
 }
 

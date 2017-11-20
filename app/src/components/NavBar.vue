@@ -5,7 +5,7 @@
     </div>
     <div class="cell -6of12">
       <input
-        class="search mousetrap"
+        class="search"
         type="text"
         placeholder="Search by name or phone..."
         v-model="searchText"
@@ -60,16 +60,20 @@ header {
   height: 5em;
   line-height: 2.7em;
 
+  background-color: $main2;
+  border-color: $main2;
+  color: #fff;
+
   .logo {
     font-size: 1.5em;
     font-weight: bold;
   }
 
   .search {
-    padding: 0.6em;
+    padding: 0.3em;
     font-size: 1em;
     width: 100%;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     border-radius: 3px;
 
     outline-color: $main;
@@ -79,6 +83,7 @@ header {
     padding: 0.5em;
     display: inline-block;
     line-height: 0;
+    border-radius: 50%;
 
     &:hover {
       cursor: pointer;

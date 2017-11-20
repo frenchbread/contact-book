@@ -1,14 +1,25 @@
 <template lang="html">
   <div class="cb-style list">
 
-    <Search></Search>
+    <div v-for="(key, index) in contacts">
 
-    <Item
-      v-for="contact in contacts"
-      :key="contact._id"
-      :contact="contact"
-      >
-    </Item>
+      <div class="grid">
+        <div class="cell -1of12">
+          <div class="letter">
+            {{ index }}
+          </div>
+        </div>
+        <div class="cell -11of12">
+          <Item
+            v-for="contact in contacts[index]"
+            :key="contact._id"
+            :contact="contact"
+            >
+          </Item>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </template>
@@ -17,7 +28,6 @@
 import store from '@/store'
 
 import Item from './Item'
-import Search from './Search'
 
 export default {
   created () {
@@ -31,7 +41,7 @@ export default {
       return store.getters.contacts
     }
   },
-  components: { Item, Search }
+  components: { Item }
 }
 </script>
 
@@ -45,7 +55,15 @@ export default {
   right: 0;
   bottom: 0;
 
+  padding: 2em;
   overflow: auto;
+
+  .letter {
+    position: sticky;
+    top: 0;
+    padding-top: calc(1em + 3px);
+    font-size: 1.5em;
+  }
 }
 
 </style>

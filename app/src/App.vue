@@ -5,15 +5,18 @@
 
     <router-view></router-view>
 
+    <ModalCenter></ModalCenter>
+
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar'
+import ModalCenter from '@/components/modals/ModalCenter'
 
 export default {
   name: 'app',
-  components: { NavBar }
+  components: { NavBar, ModalCenter }
 }
 </script>
 

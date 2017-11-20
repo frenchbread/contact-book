@@ -1,7 +1,9 @@
 import apiContacts from '@/lib/contacts/api'
+import libContacts from '@/lib/contacts'
 
 const state = {
-  all: []
+  all: [],
+  q: ''
 }
 
 const mutations = {
@@ -22,6 +24,9 @@ const mutations = {
   REMOVE_CONTACT (state, _id) {
     const toRemove = state.all.map(x => x._id).indexOf(_id)
     state.all.splice(toRemove, 1)
+  },
+  UPDATE_QUERY (state, q) {
+    state.q = q
   }
 }
 
@@ -33,11 +38,22 @@ const actions = {
   },
   clearContacts ({ commit }) {
     commit('CLEAR_CONTACTS')
+  },
+  addContact ({ commit }, contact) {
+    commit('ADD_CONTACT', contact)
+  },
+  updateQuery ({ commit }, q) {
+    commit('UPDATE_QUERY', q)
   }
 }
 
 const getters = {
-  contacts: state => state.all
+  contacts: state => {
+    const q = state.q
+    const contacts = state.all
+
+    return libContacts.parseForList(contacts, q)
+  }
 }
 
 export default {

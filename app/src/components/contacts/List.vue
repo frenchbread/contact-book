@@ -61,7 +61,7 @@ export default {
   .letter {
     position: sticky;
     top: 0;
-    padding-top: calc(1em + 3px);
+    padding: calc(1em + 3px) 0 calc(1em + 3px);
     font-size: 1.5em;
   }
 }

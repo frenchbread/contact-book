@@ -5,7 +5,7 @@
     </div>
     <div class="cell -6of12">
       <input
-        class="search"
+        class="search mousetrap"
         type="text"
         placeholder="Search by name or phone..."
         v-model="searchText"

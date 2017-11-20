@@ -11,7 +11,7 @@
           <input
             id="contact-first-name"
             type="text"
-            class="form-control"
+            class="form-control mousetrap"
             placeholder="First name"
             v-model="contact.first_name" />
         </div>
@@ -147,6 +147,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import feather from 'feather-icons'
 
 import store from '@/store'
@@ -167,6 +168,9 @@ export default {
         emails: ['']
       }
     }
+  },
+  mounted () {
+    $('#contact-first-name').focus()
   },
   methods: {
     submit () {

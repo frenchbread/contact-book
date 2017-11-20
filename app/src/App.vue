@@ -7,16 +7,19 @@
 
     <ModalCenter></ModalCenter>
 
+    <KeyBinds></KeyBinds>
+
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar'
 import ModalCenter from '@/components/modals/ModalCenter'
+import KeyBinds from '@/components/KeyBinds'
 
 export default {
   name: 'app',
-  components: { NavBar, ModalCenter }
+  components: { NavBar, ModalCenter, KeyBinds }
 }
 </script>
 

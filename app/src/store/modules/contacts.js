@@ -45,6 +45,9 @@ const actions = {
   updateContact ({ commit }, contact) {
     commit('UPDATE_CONTACT', contact)
   },
+  removeContact ({ commit }, _id) {
+    commit('REMOVE_CONTACT', _id)
+  },
   updateQuery ({ commit }, q) {
     commit('UPDATE_QUERY', q)
   }

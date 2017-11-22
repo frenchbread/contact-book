@@ -63,7 +63,7 @@
               <span
                 class="icon-btn"
                 v-if="index === contact.addresses.length - 1"
-                @click="contact.addresses.push('')"
+                @click="addItem('addresses')"
                 v-html="feather.toSvg('plus', opts)">
               </span>
             </div>
@@ -96,7 +96,7 @@
               <span
                 class="icon-btn"
                 v-if="index === contact.phone_numbers.length - 1"
-                @click="contact.phone_numbers.push('')"
+                @click="addItem('phone_numbers')"
                 v-html="feather.toSvg('plus', opts)">
               </span>
             </div>
@@ -128,7 +128,7 @@
               <span
                 class="icon-btn"
                 v-if="index === contact.emails.length - 1"
-                @click="contact.emails.push('')"
+                @click="addItem('emails')"
                 v-html="feather.toSvg('plus', opts)">
               </span>
             </div>
@@ -140,9 +140,13 @@
 
     <div class="gap-big"></div>
 
-    <div>
-      <button v-if="isEdit" type="submit" class="btn btn-primary btn-block">Update contact</button>
-      <button v-else type="submit" class="btn btn-primary btn-block">Create contact</button>
+    <div v-if="isEdit">
+      <button type="submit" class="btn btn-primary btn-block">Update contact</button>
+      <div class="gap"></div>
+      <button class="btn btn-block btn-primary btn-ghost" @click="cancelEdit()">Cancel</button>
+    </div>
+    <div v-else>
+      <button type="submit" class="btn btn-primary btn-block">Create contact</button>
     </div>
   </form>
 </template>
@@ -208,6 +212,13 @@ export default {
             .catch(err => console.error(err.message))
         }
       }
+    },
+    cancelEdit () {
+      const { title, component, data } = this.data.prevModal
+      ModalController.closeAndOpen(title, component, data)
+    },
+    addItem (type) {
+      this.contact[type].push('')
     },
     removeItem (type, index) {
       this.contact[type].splice(index, 1)

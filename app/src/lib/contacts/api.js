@@ -16,7 +16,7 @@ export default {
       .then(res => res.data)
       .catch(err => err)
   },
-  delete (id) {
+  remove (id) {
     return axe.delete(`/contacts/${id}`)
       .then(res => res.data)
       .catch(err => err)

@@ -6,7 +6,7 @@
       </div>
       <div class="cell -2of12 controls align-right">
         <span class="icon-btn" @click="openEditContactModal()" v-html="feather.toSvg('edit-2', opts2)"></span>
-        <span class="icon-btn" v-html="feather.toSvg('trash-2', opts2)"></span>
+        <span class="icon-btn" @click="openRemoveConfirmationModal()" v-html="feather.toSvg('trash-2', opts2)"></span>
       </div>
     </div>
 
@@ -105,6 +105,7 @@ import moment from 'moment'
 
 import ModalController from '@/components/modals/ModalController'
 import AddContact from '@/components/contacts/Add'
+import RemoveContact from '@/components/contacts/Remove'
 
 export default {
   props: ['data'],
@@ -128,7 +129,7 @@ export default {
       ModalController.closeAndOpen('Edit contact', AddContact, { isEdit: true, contact: this.data.contact })
     },
     openRemoveConfirmationModal () {
-
+      ModalController.closeAndOpen('Remove contact', RemoveContact, { contact: this.data.contact })
     }
   }
 }

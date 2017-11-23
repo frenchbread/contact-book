@@ -3,7 +3,8 @@ import libContacts from '@/lib/contacts'
 
 const state = {
   all: [],
-  q: ''
+  q: '',
+  isLoading: false
 }
 
 const mutations = {
@@ -27,14 +28,27 @@ const mutations = {
   },
   UPDATE_QUERY (state, q) {
     state.q = q
+  },
+  START_LOADER (state) {
+    state.isLoading = true
+  },
+  STOP_LOADER (state) {
+    state.isLoading = false
   }
 }
 
 const actions = {
   getContacts ({ commit }) {
+    commit('START_LOADER')
     apiContacts.get()
-      .then(contacts => commit('ADD_CONTACTS', contacts))
-      .catch(err => console.error(err.message))
+      .then(contacts => {
+        commit('ADD_CONTACTS', contacts)
+        commit('STOP_LOADER')
+      })
+      .catch(err => {
+        commit('STOP_LOADER')
+        console.error(err.message)
+      })
   },
   clearContacts ({ commit }) {
     commit('CLEAR_CONTACTS')
@@ -59,6 +73,9 @@ const getters = {
     const contacts = state.all
 
     return libContacts.parseForList(contacts, q)
+  },
+  isLoading: state => {
+    return state.isLoading
   }
 }
 

@@ -141,13 +141,13 @@ export default {
       return this.data.contact.phone_numbers[0] !== '' ||
         this.data.contact.emails[0] !== '' ||
         this.data.contact.addresses[0] !== '' ||
-        this.data.contact.date_of_birth !== ''
+        this.data.contact.date_of_birth
     },
     formatDateTime (date) {
       return moment(date).format('HH:mm, DD MMM YYYY')
     },
     formatDoB (date) {
-      return moment(date).format('DD MMM YYYY')
+      return moment(date, 'YYYY-MM-DD').format('DD MMM YYYY')
     },
     openEditContactModal () {
       ModalController.closeAndOpen('Edit contact', AddContact, { isEdit: true, contact: this.data.contact })

@@ -154,7 +154,6 @@
 <script>
 import $ from 'jquery'
 import feather from 'feather-icons'
-import moment from 'moment'
 
 import store from '@/store'
 import apiContacts from '@/lib/contacts/api'
@@ -182,10 +181,6 @@ export default {
     if (this.data.isEdit) {
       this.isEdit = true
       this.contact = this.data.contact
-
-      if (this.contact.date_of_birth) {
-        this.contact.date_of_birth = moment(this.contact.date_of_birth, 'DD/MM/YYYY').format('YYYY-MM-DD')
-      }
     }
   },
   mounted () {

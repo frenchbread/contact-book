@@ -1,12 +1,15 @@
 <template lang="html">
   <div>
-    <blockquote>
-      Are you sure you want to remove
-      {{ data.contact.first_name }} {{ data.contact.last_name }}
-      from contacts list?
-    </blockquote>
-
     <div class="gap"></div>
+
+    <span>
+      Are you sure you want to remove
+      <b>"{{ data.contact.first_name }} {{ data.contact.last_name }}"</b>
+      from contacts list?
+    </span>
+
+    <div class="gap-big"></div>
+
     <button class="btn btn-block btn-error" @click="removeContact()">Yes, remove</button>
     <div class="gap"></div>
     <button class="btn btn-block btn-primary btn-ghost" @click="cancelRemove()">Cancel</button>

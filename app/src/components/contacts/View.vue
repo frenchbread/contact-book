@@ -109,11 +109,15 @@
     <div class="divider"></div>
 
     <div>
-      Created at <b>{{ formatDateTime(data.contact.createdAt) }}</b>
-    </div>
+      <div class="gap"></div>
 
-    <div>
-      Updated at <b>{{ formatDateTime(data.contact.updatedAt) }}</b>
+      <div>
+        Created at <b>{{ formatDateTime(data.contact.createdAt) }}</b>
+      </div>
+
+      <div>
+        Updated at <b>{{ formatDateTime(data.contact.updatedAt) }}</b>
+      </div>
     </div>
 
   </div>

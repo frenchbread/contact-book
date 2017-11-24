@@ -23,10 +23,15 @@
 
         </div>
       </div>
-      <div v-else>
-        <blockquote>
-          > No items found
-        </blockquote>
+      <div v-else class="grid">
+        <div class="cell -1of12">
+
+        </div>
+        <div class="cell -11of12">
+          <blockquote>
+            > No items found
+          </blockquote>
+        </div>
       </div>
 
     </div>

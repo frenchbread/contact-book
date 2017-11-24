@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="view">
     <div class="grid header">
-      <div class="cell -10of12 name">
-        <span>{{ data.contact.first_name }} {{ data.contact.last_name }}</span>
+      <div class="cell -10of12 text">
+        <span class="name">{{ data.contact.first_name }} {{ data.contact.last_name }}</span>
       </div>
       <div class="cell -2of12 controls align-right">
         <span class="icon-btn" @click="openEditContactModal()" v-html="feather.toSvg('edit-2', opts2)"></span>
@@ -15,6 +15,26 @@
     <div class="details" v-if="detailsExist()">
 
       <div class="gap"></div>
+
+      <div v-if="data.contact.date_of_birth">
+
+        <h3>Date of birth</h3>
+
+        <div class="divider"></div>
+
+        <div class="grid">
+
+          <div class="cell -2of12 align-center">
+            <span class="icon" v-html="feather.toSvg('calendar', opts)"></span>
+          </div>
+
+          <div class="cell -10of12">
+             {{ formatDoB(data.contact.date_of_birth) }}
+          </div>
+
+        </div>
+
+      </div>
 
       <div v-if="data.contact.phone_numbers[0] !== ''">
 
@@ -118,12 +138,16 @@ export default {
   },
   methods: {
     detailsExist () {
-      return this.data.contact.phone_numbers[0] !== '' &&
-        this.data.contact.emails[0] !== '' &&
-        this.data.contact.addresses[0] !== ''
+      return this.data.contact.phone_numbers[0] !== '' ||
+        this.data.contact.emails[0] !== '' ||
+        this.data.contact.addresses[0] !== '' ||
+        this.data.contact.date_of_birth !== ''
     },
     formatDateTime (date) {
       return moment(date).format('HH:mm, DD MMM YYYY')
+    },
+    formatDoB (date) {
+      return moment(date).format('DD MMM YYYY')
     },
     openEditContactModal () {
       ModalController.closeAndOpen('Edit contact', AddContact, { isEdit: true, contact: this.data.contact })
@@ -141,11 +165,15 @@ export default {
 
 .view {
   .header {
-    .name {
+    .text {
       padding: 2em;
 
-      span {
+      .name {
         font-size: 3em;
+      }
+
+      .dob {
+        font-size: 1em;
       }
     }
 

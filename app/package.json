@@ -4,6 +4,7 @@
   "description": "Contact book app.",
   "author": "Damir Mustafin <damir.mustafin@protonmail.ch>",
   "private": true,
+  "repository": "https://github.com/frenchbread/contact-book",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",

@@ -159,6 +159,7 @@ import store from '@/store'
 import apiContacts from '@/lib/contacts/api'
 
 import ModalController from '@/components/modals/ModalController'
+import notify from '@/components/notify/Notify'
 
 export default {
   props: ['close', 'data'],
@@ -195,6 +196,7 @@ export default {
           apiContacts.update(contact._id, contact)
             .then(updatedContact => {
               store.dispatch('updateContact', updatedContact)
+              notify.success('Contact successfully updated!')
 
               if (this.data.prevModal) {
                 const { title, component, data } = this.data.prevModal
@@ -207,6 +209,7 @@ export default {
           apiContacts.add(contact)
             .then(newContact => {
               store.dispatch('addContact', newContact)
+              notify.success('New contact successfully created!')
               this.close()
             })
             .catch(err => console.error(err.message))

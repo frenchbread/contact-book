@@ -9,6 +9,8 @@
 
     <KeyBinds></KeyBinds>
 
+    <NotificationCenter></NotificationCenter>
+
   </div>
 </template>
 
@@ -16,10 +18,11 @@
 import NavBar from '@/components/NavBar'
 import ModalCenter from '@/components/modals/ModalCenter'
 import KeyBinds from '@/components/KeyBinds'
+import NotificationCenter from '@/components/notify/NotificationCenter'
 
 export default {
   name: 'app',
-  components: { NavBar, ModalCenter, KeyBinds }
+  components: { NavBar, ModalCenter, KeyBinds, NotificationCenter }
 }
 </script>
 

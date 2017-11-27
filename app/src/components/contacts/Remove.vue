@@ -22,6 +22,7 @@ import store from '@/store'
 import apiContacts from '@/lib/contacts/api'
 
 import ModalController from '@/components/modals/ModalController'
+import notify from '@/components/notify/Notify'
 
 export default {
   props: ['data', 'close'],
@@ -31,6 +32,7 @@ export default {
       apiContacts.remove(contact._id, contact)
         .then(res => {
           store.dispatch('removeContact', contact._id)
+          notify.success('Contact successfully removed!')
 
           this.close()
         })

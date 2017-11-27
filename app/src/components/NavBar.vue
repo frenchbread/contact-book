@@ -13,7 +13,8 @@
         />
     </div>
     <div class="cell -3of12 align-right">
-      <span @click="openAddContactModal()" class="icon-btn" v-html="feather.toSvg('plus', opts)"></span>
+      <span @click="openInfoModal()" class="icon-btn" v-html="feather.toSvg('info', opts)"></span>
+      <span @click="openAddContactModal()" class="icon-btn" v-html="feather.toSvg('user-plus', opts)"></span>
     </div>
   </header>
 </template>
@@ -25,6 +26,7 @@ import store from '@/store'
 
 import ModalController from '@/components/modals/ModalController'
 import AddContact from '@/components/contacts/Add'
+import Info from '@/components/Info'
 
 export default {
   data () {
@@ -37,6 +39,9 @@ export default {
   methods: {
     openAddContactModal () {
       ModalController.open('Add new contact', AddContact)
+    },
+    openInfoModal () {
+      ModalController.open('Info', Info)
     },
     submitSearch () {
       store.dispatch('updateQuery', this.searchText)

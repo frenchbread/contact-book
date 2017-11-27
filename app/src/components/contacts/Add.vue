@@ -113,7 +113,7 @@
           <div class="grid" v-for="(addr, index) in contact.emails">
             <div class="cell -9of12">
               <input
-                type="text"
+                type="email"
                 class="form-control"
                 :placeholder="'Email ' + (index + 1)"
                 v-model="contact.emails[index]"/>

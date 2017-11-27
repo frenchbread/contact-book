@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "API server for contact-book app.",
   "main": "index.js",
-  "repository": "https://github.com/frenchbread/contact-book.git",
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": "Damir Mustafin <damir.mustafin@protonmail.ch>",
   "license": "MIT",
   "dependencies": {

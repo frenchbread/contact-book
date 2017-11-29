@@ -191,7 +191,7 @@ export default {
     submit () {
       const contact = this.contact
 
-      if (contact.first_name) {
+      if (contact.first_name && contact.last_name) {
         if (this.isEdit) {
           apiContacts.update(contact._id, contact)
             .then(updatedContact => {
@@ -214,6 +214,8 @@ export default {
             })
             .catch(err => console.error(err.message))
         }
+      } else {
+        notify.warning('Woops!', 'First name & last name are requried fields!')
       }
     },
     cancelEdit () {

@@ -138,8 +138,6 @@
 
     </div>
 
-    <div class="gap-big"></div>
-
     <div v-if="isEdit">
       <button type="submit" class="btn btn-primary btn-block">Update contact</button>
       <div class="gap"></div>

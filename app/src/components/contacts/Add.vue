@@ -141,7 +141,7 @@
     <div v-if="isEdit">
       <button type="submit" class="btn btn-primary btn-block">Update contact</button>
       <div class="gap"></div>
-      <button class="btn btn-block btn-primary btn-ghost" @click="cancelEdit()">Cancel</button>
+      <button type="button" class="btn btn-block btn-primary btn-ghost" @click="cancelEdit()">Cancel</button>
     </div>
     <div v-else>
       <button type="submit" class="btn btn-primary btn-block">Create contact</button>
